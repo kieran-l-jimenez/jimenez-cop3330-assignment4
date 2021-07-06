@@ -1,15 +1,31 @@
 @startuml
 
 class App {
-main()
-start()
+    + main()
+    + start()
 }
 
+'open GUI here, Reqs 7, 18, and 20 here?
+class ToDoController {
++ makeItem()
++ addList()
++ openList()
++ openSet()
++ saveList()
++ saveSet()
++ showIncomplete()
++ showComplete()
+}
+
+'It might be easier to have a simple "ListSet" class holding ToDoLists for loading
+'and saving sets of lists - Reqs: 18, 20
+
 class ToDoList {
--Title : String
+Title : String
 'Req 2
--Items : ArrayList
+Items : ArrayList
 'Req 3
+numItems : int
 
 +setTitle()
 'Req 6/8
@@ -24,41 +40,35 @@ class ToDoList {
 'Req 11/12
 +markItemComplete()
 'Req 13
++markItemIncomplete()
 +sortItemComplete() : ArrayList
 'Req 16
 +sortItemIncomplete() : ArrayList
 'Req 15
-+sortItemDate() : ArrayList
++sortItemDate()
 +exportList()
 'Req 17
 +loadList()
 'Req 19
 }
 
-'open GUI here, Reqs 7, 18, and 20 here?
-class ToDoController {
-}
-
 class Item {
--Description : String
+Description : String
 'Req 4
--DueDate : String
+DueDate : String
 'Req 5 "YYYY-MM-DD"
--Complete : Boolean
+Complete : Boolean
 
-getDescription() : String
-setDescription()
-getDate() : String
-setDate()
-markComplete()
-markIncomplete()
++ getDescription() : String
++ setDescription()
++ getDueDate() : String
++ setDueDate()
++ markComplete()
++ markIncomplete()
 }
 
-class FXMLController {
-}
-
-ToDoList "1 " *--- "many" Item
-App -- ToDoController
+ToDoList "1 " *-- "many" Item
+App - ToDoController
 ToDoController "1 " *-- "many" ToDoList
-
+javafx.Application <|-- App
 @enduml

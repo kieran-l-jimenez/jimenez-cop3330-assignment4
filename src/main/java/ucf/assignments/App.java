@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /*Your application shall satisfy the following requirements:
 1. The application shall be able to manage at least 100 unique todo lists
 2. A todo list shall have a title
@@ -38,14 +40,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
 
-        Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            Scene scene = new Scene(root);
 
-        stage.setTitle("JavaFX and Gradle");
-        stage.setScene(scene);
-        stage.show();
+            stage.setTitle("To Do List Manager");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

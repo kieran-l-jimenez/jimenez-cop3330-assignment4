@@ -26,6 +26,4 @@ test {
     useJUnitPlatform()
 }
 
-application {
-    mainClass = 'ucf.assignments.MainApp'
-}
+mainClassName = 'ucf.assignments.App'
